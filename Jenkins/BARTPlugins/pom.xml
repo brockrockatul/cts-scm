@@ -17,13 +17,6 @@
         <jenkins.version>2.7.3</jenkins.version>
     </properties>
 	<name>BART-plugin</name>
-	<!--
-	<repositories>
-		<repository>
-			<id>repo.jenkins-ci.org</id>
-			<url>https://repo.jenkins-ci.org/public/</url>
-		</repository>
-  </repositories> -->
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
