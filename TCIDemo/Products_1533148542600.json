@@ -1,0 +1,230 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Products",
+    "x-lastModified": "Aug 01, 2018 11:15AM PST",
+    "description": "Main Product Catalog"
+  },
+  "paths": {
+    "/products": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/ProductsSchema"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "Apple",
+                  "description": "Its a fruit",
+                  "price": 50.25,
+                  "tag": [
+                    "Fruit",
+                    "healthy",
+                    "Red"
+                  ]
+                },
+                {
+                  "id": 2,
+                  "name": "Orange",
+                  "description": "Its a juicy fruit",
+                  "price": 55.25,
+                  "tag": [
+                    "Fruit",
+                    "Juicy",
+                    "Orange"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "operationId": "getProducts",
+        "summary": "Return a List of Products. Search params of name and description"
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Success response",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "409": {
+            "description": "CreateFailed",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ProductSchema"
+            }
+          }
+        ],
+        "operationId": "postProducts",
+        "summary": "Add a new Product",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/products/{productid}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/ProductSchema"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "productid",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "operationId": "getProducts_productid",
+        "summary": "Get a specific product by id"
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "productid",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ProductSchema"
+            }
+          }
+        ],
+        "operationId": "putProducts_productid",
+        "summary": "create a new product",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ProductsSchema": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "default": 2
+          },
+          "name": {
+            "type": "string",
+            "default": "Orange"
+          },
+          "description": {
+            "type": "string",
+            "default": "Its a juicy fruit"
+          },
+          "price": {
+            "type": "number",
+            "default": 55.25
+          },
+          "tag": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "Orange"
+            }
+          }
+        }
+      }
+    },
+    "ProductSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "default": 1
+        },
+        "name": {
+          "type": "string",
+          "default": "Apple"
+        },
+        "description": {
+          "type": "string",
+          "default": "A tasty Fruit"
+        },
+        "price": {
+          "type": "number",
+          "default": 55.6
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": "healthy"
+          }
+        }
+      }
+    }
+  }
+}
