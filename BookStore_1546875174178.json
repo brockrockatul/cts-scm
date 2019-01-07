@@ -1,0 +1,105 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "BookStore",
+    "x-lastModified": "Jan 07, 2019 06:57AM PST"
+  },
+  "paths": {
+    "/books": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/BookSchema"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "operationId": "getBooks"
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/ResponseSchema"
+            },
+            "examples": {
+              "application/json": {
+                "internalID": "1234AAX",
+                "title": "My new book"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BookSchema"
+            }
+          }
+        ],
+        "operationId": "postBooks",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "BookSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "default": "My new book"
+        },
+        "author": {
+          "type": "string",
+          "default": "Leon Stigter"
+        },
+        "description": {
+          "type": "string",
+          "default": "A new cool book on APIs"
+        },
+        "price": {
+          "type": "number",
+          "default": 29.95
+        }
+      }
+    },
+    "ResponseSchema": {
+      "type": "object",
+      "properties": {
+        "internalID": {
+          "type": "string",
+          "default": "1234AAX"
+        },
+        "title": {
+          "type": "string",
+          "default": "My new book"
+        }
+      }
+    }
+  }
+}
